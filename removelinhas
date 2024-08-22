@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remover Linhas em Branco do SQL</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        textarea { width: 100%; height: 200px; }
+        button { margin-top: 10px; }
+        pre { background: #f4f4f4; padding: 10px; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <h1>Remover Linhas em Branco do SQL</h1>
+    <textarea id="input-sql" placeholder="Cole seu código SQL aqui..."></textarea>
+    <button onclick="removerLinhasEmBranco()">Remover Linhas em Branco</button>
+    <h2>SQL Ajustado:</h2>
+    <pre id="output-sql"></pre>
+
+    <script>
+        function removerLinhasEmBranco() {
+            let sqlQuery = document.getElementById('input-sql').value;
+            let sqlQueryLimpo = sqlQuery.replace(/\n\s*\n/g, '\n').trim();
+            document.getElementById('output-sql').textContent = sqlQueryLimpo;
+        }
+    </script>
+</body>
+</html>
