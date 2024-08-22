@@ -5,6 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Remover Linhas em Branco do SQL</title>
     <style>
+        @keyframes glitch {
+            0% {
+                text-shadow: 2px 2px #ff0000, -2px -2px #00ff00;
+                transform: skewX(0deg);
+            }
+            25% {
+                text-shadow: 2px 2px #00ff00, -2px -2px #ff0000;
+                transform: skewX(-5deg);
+            }
+            50% {
+                text-shadow: -2px -2px #ff0000, 2px 2px #00ff00;
+                transform: skewX(5deg);
+            }
+            75% {
+                text-shadow: -2px -2px #00ff00, 2px 2px #ff0000;
+                transform: skewX(0deg);
+            }
+            100% {
+                text-shadow: 2px 2px #ff0000, -2px -2px #00ff00;
+                transform: skewX(0deg);
+            }
+        }
+
+        @keyframes button-glow {
+            0%, 100% {
+                box-shadow: 0 0 10px #ff7f00, 0 0 20px #ff7f00, 0 0 30px #ff7f00;
+            }
+            50% {
+                box-shadow: 0 0 20px #ff4500, 0 0 40px #ff4500, 0 0 60px #ff4500;
+            }
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #121212;
@@ -27,6 +59,7 @@
             text-align: center;
             margin-bottom: 20px;
             color: #ffa500;
+            animation: glitch 1s infinite;
         }
         .input-container, .output-container {
             display: flex;
@@ -61,12 +94,14 @@
             padding: 10px;
             font-size: 16px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
             margin-bottom: 10px;
             width: 100px;
         }
         button:hover {
             background-color: #ff7f00;
+            animation: button-glow 1.5s infinite;
+            transform: scale(1.05);
         }
         button:last-child {
             margin-bottom: 0;
