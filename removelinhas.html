@@ -44,7 +44,6 @@
             border-color: #ffa500;
         }
         button {
-            display: block;
             width: 100%;
             background-color: #ffa500;
             color: #ffffff;
@@ -59,18 +58,13 @@
         button:hover {
             background-color: #ff7f00;
         }
-        pre {
-            background-color: #2c2c2c;
-            padding: 15px;
-            border-radius: 5px;
-            border: 1px solid #333;
-            white-space: pre-wrap;
-            word-wrap: break-word;
+        .output-container {
             position: relative;
-            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
         }
-        pre:hover {
-            background-color: #333;
+        .output-container textarea {
+            margin-bottom: 0;
+            padding-right: 50px;
         }
         .copy-button {
             position: absolute;
@@ -96,23 +90,24 @@
         <textarea id="input-sql" placeholder="Cole seu código SQL aqui..."></textarea>
         <button onclick="removerLinhasEmBranco()">Remover Linhas em Branco</button>
         <h2>SQL Ajustado:</h2>
-        <pre id="output-sql"><button class="copy-button" onclick="copiarSQL()">Copiar</button></pre>
+        <div class="output-container">
+            <textarea id="output-sql" readonly placeholder="O SQL ajustado aparecerá aqui..."></textarea>
+            <button class="copy-button" onclick="copiarSQL()">Copiar</button>
+        </div>
     </div>
 
     <script>
         function removerLinhasEmBranco() {
             let sqlQuery = document.getElementById('input-sql').value;
             let sqlQueryLimpo = sqlQuery.replace(/\n\s*\n/g, '\n').trim();
-            document.getElementById('output-sql').textContent = sqlQueryLimpo;
+            document.getElementById('output-sql').value = sqlQueryLimpo;
         }
 
         function copiarSQL() {
-            let sqlOutput = document.getElementById('output-sql').textContent;
-            navigator.clipboard.writeText(sqlOutput).then(function() {
-                alert('SQL copiado para a área de transferência!');
-            }, function(err) {
-                console.error('Erro ao copiar: ', err);
-            });
+            let sqlOutput = document.getElementById('output-sql');
+            sqlOutput.select();
+            document.execCommand('copy');
+            alert('SQL copiado para a área de transferência!');
         }
     </script>
 </body>
